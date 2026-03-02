@@ -1,0 +1,42 @@
+{
+  "name": "@vdkit/oxlint-plugin-blueprints",
+  "version": "1.0.0",
+  "description": "Oxlint plugin for validating VDK blueprint/frontmatter contracts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "bin": {
+    "vdk-blueprints-fix": "./src/fix.mjs"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "oxlint",
+    "plugin",
+    "vdk",
+    "blueprints",
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vdkit/oxlint-plugin-vdk-blueprints.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "node --check src/index.mjs && node --check src/fix.mjs"
+  },
+  "dependencies": {
+    "@oxlint/plugins": "^1.51.0",
+    "js-yaml": "^4.1.1"
+  }
+}
