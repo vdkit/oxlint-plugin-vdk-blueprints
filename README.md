@@ -5,7 +5,7 @@ Oxlint JS plugin for validating VDK blueprint/frontmatter contracts in YAML file
 ## Install
 
 ```bash
-pnpm add -D @vdk/oxlint-plugin-blueprints oxlint
+pnpm add -D @vdkit/oxlint-plugin-blueprints oxlint
 ```
 
 ## Usage
@@ -37,6 +37,7 @@ Run with plugin import enabled:
 
 ```bash
 oxlint --import-plugin -c .oxlintrc.json "lint/blueprint-lint-trigger.mjs"
+oxlint --import-plugin -c .oxlintrc.json "lint/blueprint-lint-trigger.ts"
 ```
 
 ### Auto-fix command
@@ -74,7 +75,7 @@ Checks all YAML files in `targets` for:
 - non-empty `platforms` object
 - Duplicate `id` collisions across scanned files
 
-Supported file types are configurable and include `yaml`, `yml`, `md`, and `mdx` by default.
+Supported file types are configurable and include `yaml`, `yml`, `md`, `mdx`, and `mdc` by default.
 
 ### Options
 
@@ -84,7 +85,7 @@ Supported file types are configurable and include `yaml`, `yml`, `md`, and `mdx`
 - `requireVersion: boolean` (default: `true`)
 - `enforceKebabCaseId: boolean` (default: `true`)
 - `allowedKinds: string[]` (default: canonical VDK kinds)
-- `fileExtensions: string[]` (default: `['yaml', 'yml', 'md', 'mdx']`)
+- `fileExtensions: string[]` (default: `['yaml', 'yml', 'md', 'mdx', 'mdc']`)
 
 Fixer CLI options:
 
@@ -94,6 +95,8 @@ Fixer CLI options:
 - `--default-version <value>`
 - `--ext <extension>` (repeatable)
 - `--write` (without it, runs in dry-run mode)
+- `-h`, `--help`
+- `-v`, `--version`
 
 ## Publish
 
