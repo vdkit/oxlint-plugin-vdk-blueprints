@@ -2,41 +2,63 @@
   "name": "@vdkit/oxlint-plugin-blueprints",
   "version": "1.0.0",
   "description": "Oxlint plugin for validating VDK blueprint/frontmatter contracts",
-  "publishConfig": {
-    "access": "public"
-  },
-  "type": "module",
-  "exports": {
-    ".": "./src/index.mjs"
-  },
-  "bin": {
-    "vdk-blueprints-fix": "./src/fix.mjs"
-  },
-  "files": [
-    "src",
-    "README.md",
-    "LICENSE"
-  ],
-  "license": "MIT",
   "keywords": [
+    "blueprints",
+    "lint",
     "oxlint",
     "plugin",
-    "vdk",
-    "blueprints",
-    "lint"
+    "vdk"
   ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/vdkit/oxlint-plugin-vdk-blueprints.git"
   },
-  "engines": {
-    "node": ">=22"
+  "bin": {
+    "vdk-blueprints-fix": "./dist/fix.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
-    "check": "node --check src/index.mjs && node --check src/fix.mjs"
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "check": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run build",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint src",
+    "prepublishOnly": "pnpm run check",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
-    "@oxlint/plugins": "^1.51.0",
-    "js-yaml": "^4.1.1"
-  }
+    "@oxlint/plugins": "^1.73.0",
+    "js-yaml": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.1.0",
+    "oxfmt": "^0.58.0",
+    "oxlint": "^1.73.0",
+    "rimraf": "^6.1.3",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=24.19.0",
+    "pnpm": ">=11.20.0"
+  },
+  "packageManager": "pnpm@11.20.0"
 }
